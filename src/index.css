@@ -2,14 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Academy Pulse Portal Design System */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 @layer base {
   :root {
+    /* Base colors */
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
+    
+    /* School brand colors */
+    --school-primary: 220 70% 50%;
+    --school-primary-foreground: 0 0% 100%;
+    
+    /* Role-based color themes */
+    --student-primary: 217 91% 60%;
+    --student-secondary: 217 91% 95%;
+    --student-accent: 213 94% 68%;
+    
+    --teacher-primary: 142 76% 36%;
+    --teacher-secondary: 142 76% 95%;
+    --teacher-accent: 134 61% 41%;
+    
+    --parent-primary: 25 95% 53%;
+    --parent-secondary: 25 95% 95%;
+    --parent-accent: 31 81% 56%;
+    
+    --management-primary: 262 83% 58%;
+    --management-secondary: 262 83% 95%;
+    --management-accent: 271 91% 65%;
+    
+    /* Gradients */
+    --gradient-school: linear-gradient(135deg, hsl(var(--school-primary)), hsl(217 91% 60%));
+    --gradient-student: linear-gradient(135deg, hsl(var(--student-primary)), hsl(var(--student-accent)));
+    --gradient-teacher: linear-gradient(135deg, hsl(var(--teacher-primary)), hsl(var(--teacher-accent)));
+    --gradient-parent: linear-gradient(135deg, hsl(var(--parent-primary)), hsl(var(--parent-accent)));
+    --gradient-management: linear-gradient(135deg, hsl(var(--management-primary)), hsl(var(--management-accent)));
+    
+    /* Shadows */
+    --shadow-soft: 0 4px 20px -2px hsl(var(--school-primary) / 0.1);
+    --shadow-hover: 0 8px 30px -5px hsl(var(--school-primary) / 0.2);
+    --shadow-card: 0 2px 10px -3px hsl(222.2 84% 4.9% / 0.1);
 
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
@@ -100,6 +133,74 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-inter;
+  }
+}
+
+@layer components {
+  /* Role-based button variants */
+  .btn-student {
+    @apply bg-gradient-to-r from-[hsl(var(--student-primary))] to-[hsl(var(--student-accent))] text-white hover:shadow-lg transform hover:scale-105 transition-all duration-200;
+  }
+  
+  .btn-teacher {
+    @apply bg-gradient-to-r from-[hsl(var(--teacher-primary))] to-[hsl(var(--teacher-accent))] text-white hover:shadow-lg transform hover:scale-105 transition-all duration-200;
+  }
+  
+  .btn-parent {
+    @apply bg-gradient-to-r from-[hsl(var(--parent-primary))] to-[hsl(var(--parent-accent))] text-white hover:shadow-lg transform hover:scale-105 transition-all duration-200;
+  }
+  
+  .btn-management {
+    @apply bg-gradient-to-r from-[hsl(var(--management-primary))] to-[hsl(var(--management-accent))] text-white hover:shadow-lg transform hover:scale-105 transition-all duration-200;
+  }
+
+  /* Role-based card themes */
+  .card-student {
+    @apply border-l-4 border-[hsl(var(--student-primary))] bg-[hsl(var(--student-secondary))] shadow-[var(--shadow-card)];
+  }
+  
+  .card-teacher {
+    @apply border-l-4 border-[hsl(var(--teacher-primary))] bg-[hsl(var(--teacher-secondary))] shadow-[var(--shadow-card)];
+  }
+  
+  .card-parent {
+    @apply border-l-4 border-[hsl(var(--parent-primary))] bg-[hsl(var(--parent-secondary))] shadow-[var(--shadow-card)];
+  }
+  
+  .card-management {
+    @apply border-l-4 border-[hsl(var(--management-primary))] bg-[hsl(var(--management-secondary))] shadow-[var(--shadow-card)];
+  }
+
+  /* Hero gradient backgrounds */
+  .hero-gradient {
+    background: var(--gradient-school);
+  }
+  
+  .student-gradient {
+    background: var(--gradient-student);
+  }
+  
+  .teacher-gradient {
+    background: var(--gradient-teacher);
+  }
+  
+  .parent-gradient {
+    background: var(--gradient-parent);
+  }
+  
+  .management-gradient {
+    background: var(--gradient-management);
+  }
+
+  /* Animated elements */
+  .float-animation {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
   }
 }
